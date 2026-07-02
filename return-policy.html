@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Return Policy — Nexova</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --bg: #0a0a0a;
+    --fg: #f5f5f3;
+    --fg-dim: #8a8a88;
+    --line: #232323;
+    --line-bright: #333333;
+    --card: #101010;
+    --red: #ff3b5c;
+    --green: #2fe89a;
+    --blue: #2f7dfa;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{ background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sans-serif; min-height:100vh; }
+
+  .blob{ position:fixed; border-radius:50%; filter: blur(100px); pointer-events:none; z-index:0; }
+  .blob.red{ width:420px; height:420px; top:-140px; left:-160px; background: radial-gradient(circle, rgba(255,59,92,0.26), transparent 70%); }
+  .blob.green{ width:380px; height:380px; top:20%; right:-160px; background: radial-gradient(circle, rgba(47,232,154,0.18), transparent 70%); }
+  .blob.blue{ width:420px; height:420px; bottom:-160px; left:20%; background: radial-gradient(circle, rgba(47,125,250,0.22), transparent 70%); }
+
+  .grid{
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity:0.2;
+    mask-image: radial-gradient(ellipse at 50% 20%, black 10%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 20%, black 10%, transparent 70%);
+    pointer-events:none; z-index:0;
+  }
+
+  header{
+    position:relative; z-index:1;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 26px 6vw; border-bottom: 1px solid var(--line);
+  }
+  header .brand{
+    display:flex; align-items:center; gap:10px;
+    font-weight:600; letter-spacing:0.08em; font-size:15px;
+    text-decoration:none; color:var(--fg);
+  }
+  header .brand .sq{ width:8px; height:8px; background: linear-gradient(135deg, var(--red), var(--green), var(--blue)); }
+  header a.back{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color: var(--fg-dim); text-decoration:none; display:flex; align-items:center; gap:6px;
+    transition: color .2s ease;
+  }
+  header a.back:hover{ color: var(--green); }
+
+  main{ position:relative; z-index:1; max-width: 760px; margin: 0 auto; padding: 70px 6vw 100px; }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--green);
+    display:flex; align-items:center; gap:10px; margin-bottom: 16px;
+  }
+  .eyebrow::before{ content:""; width: 22px; height:1px; background: var(--red); }
+
+  h1{ font-size: clamp(28px, 5vw, 40px); font-weight: 500; letter-spacing: -0.01em; margin-bottom: 14px; }
+
+  .updated{ font-family:'JetBrains Mono', monospace; font-size: 11px; color: var(--fg-dim); letter-spacing:0.08em; margin-bottom: 46px; }
+
+  .content h2{ font-size: 19px; font-weight: 500; margin-top: 38px; margin-bottom: 12px; }
+  .content h2 .n{ color: var(--blue); font-family:'JetBrains Mono', monospace; font-size: 13px; margin-right: 10px; }
+  .content p{ color: var(--fg-dim); font-size: 15px; line-height: 1.8; font-weight: 300; margin-bottom: 10px; }
+  .content ul{ margin: 6px 0 6px 20px; color: var(--fg-dim); font-size: 15px; line-height: 1.8; font-weight: 300; }
+  .content strong{ color: var(--fg); font-weight:500; }
+
+  .note-card{
+    margin-top: 40px; border:1px solid var(--line); border-left: 3px solid;
+    border-image: linear-gradient(180deg, var(--red), var(--green), var(--blue)) 1;
+    border-radius: 10px; padding: 20px 22px; background: var(--card);
+  }
+  .note-card p{ margin:0; color: var(--fg-dim); font-size:14px; line-height:1.7; }
+  .note-card a{ color: var(--green); text-decoration:none; }
+  .note-card a:hover{ text-decoration:underline; }
+
+  footer{
+    position:relative; z-index:1; border-top: 1px solid var(--line);
+    padding: 26px 6vw 36px; display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:12px;
+  }
+  footer span{ font-family:'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #4a4a4a; }
+  footer .links{ display:flex; gap:18px; flex-wrap:wrap; }
+  footer .links a{
+    font-family:'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform:uppercase;
+    color: var(--fg-dim); text-decoration:none; transition: color .2s ease;
+  }
+  footer .links a:hover{ color: var(--green); }
+
+  @media (max-width: 560px){
+    header{ padding: 20px 6vw; }
+    footer{ flex-direction:column; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="blob red"></div>
+  <div class="blob green"></div>
+  <div class="blob blue"></div>
+  <div class="grid"></div>
+
+  <header>
+    <a class="brand" href="index.html"><span class="sq"></span> NEXOVA</a>
+    <a class="back" href="index.html">&larr; Back to Home</a>
+  </header>
+
+  <main>
+    <div class="eyebrow">Policies</div>
+    <h1>Return Policy</h1>
+    <div class="updated">Last updated: July 2026</div>
+
+    <div class="content">
+      
+<h2><span class="n">01</span>Return Window</h2>
+<p>You may request a return within <strong>7 days</strong> of receiving your order, provided the item meets our return conditions below.</p>
+
+<h2><span class="n">02</span>Conditions for Return</h2>
+<ul>
+  <li>Item must be unused, unworn, and in its original condition</li>
+  <li>Original tags, packaging, and invoice must be included</li>
+  <li>Item must not be from our non-returnable/final sale category</li>
+</ul>
+
+<h2><span class="n">03</span>How Returns Work</h2>
+<p>Once your return request is approved, we'll share pickup or drop-off instructions. After the item is received and inspected, we'll notify you of the approval status and next steps (refund or exchange).</p>
+
+<h2><span class="n">04</span>Exchanges</h2>
+<p>If you'd like a different size, color, or product instead of a refund, let our support team know when raising your request — we'll do our best to accommodate it based on availability.</p>
+
+<h2><span class="n">05</span>Return Shipping</h2>
+<p>Return shipping details (who bears the cost, and how pickup is arranged) will be shared once our store and courier partners are live.</p>
+
+    </div>
+
+    <div class="note-card">
+      <p>Our full return process will be active once the store launches. For any questions in the meantime, email <a href="mailto:nexovabrand@gmail.com">nexovabrand@gmail.com</a> or call <a href="tel:+917896573702">+91 78965 73702</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <span>© 2026 NEXOVA. ALL RIGHTS RESERVED.</span>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="refund-policy.html">Refund Policy</a>
+      <a href="return-policy.html">Return Policy</a>
+      <a href="track-order.html">Track Order</a>
+    </div>
+  </footer>
+
+</body>
+</html>
